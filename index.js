@@ -21,7 +21,7 @@ app.post('/api/convert', async (req, res) => {
     // console.log(apiKey)
     // console.log(code,language)
     const prompt = `Translate the following code in ${language} :\n${code}\n\n`;
-    const response = await axios.post(
+ axios.post(
       'https://api.openai.com/v1/engines/gpt-3.5-turbo/completions',
       {
         prompt,
@@ -36,12 +36,15 @@ app.post('/api/convert', async (req, res) => {
           'Authorization': `Bearer ${apiKey}`,
         },
       }
-    );
+    ).then((res)=>
+    res.json({convertedCode:res.data.choices[0].text})).catch((err)=>{
+      res.json({msg:err})
+    })
 
     // Process the response and extract the converted code from the GPT API output
-    const convertedCode = await response.data.choices[0].text;
-// console.log(response.data.choices[0])
-   res.json({ convertedCode });
+    // const convertedCode = await response.data.choices[0].text;
+// // console.log(response.data.choices[0])
+//    res.json({ convertedCode });
   } catch (error) {
     console.error('Error converting code:', error.message);
     res.status(500).json({ error: 'Code conversion failed' });
