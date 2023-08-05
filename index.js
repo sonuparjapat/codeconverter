@@ -22,7 +22,7 @@ app.post('/api/convert', async (req, res) => {
     // console.log(code,language)
     const prompt = `Translate the following code in ${language} :\n${code}\n\n`;
  axios.post(
-      'https://api.openai.com/v1/engines/gpt-3.5-turbo/completions',
+      'https://api.openai.com/v1/engines/text-davinci-003/completions',
       {
         prompt,
         max_tokens: 200,
