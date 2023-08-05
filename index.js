@@ -37,8 +37,8 @@ app.post('/api/convert', async (req, res) => {
         },
       }
     ).then((res)=>
-    res.json({convertedCode:res.data.choices[0].text})).catch((err)=>{
-      res.json({msg:err})
+    res.status(200).json({convertedCode:res.data.choices[0].text})).catch((err)=>{
+      res.status(400).json({msg:err})
     })
 
     // Process the response and extract the converted code from the GPT API output
