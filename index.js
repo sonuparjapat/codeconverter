@@ -39,7 +39,7 @@ app.post('/api/convert', async (req, res) => {
     );
 
     // Process the response and extract the converted code from the GPT API output
-    const convertedCode =await response.data.choices[0].text;
+    const convertedCode = response.data.choices[0].text;
 console.log(response.data.choices[0])
     res.json({ convertedCode });
   } catch (error) {
