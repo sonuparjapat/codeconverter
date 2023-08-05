@@ -20,7 +20,7 @@ app.post('/api/convert', async (req, res) => {
     const apiKey = process.env.OPENAI_API_KEY; // Replace with your actual OpenAI API key
     // console.log(apiKey)
     // console.log(code,language)
-    const prompt = `Translate the following code from ${language} to ${language === 'javascript' ? 'python' : 'javascript'}:\n${code}\n\n`;
+    const prompt = `Translate the following code in ${language} :\n${code}\n\n`;
     const response = await axios.post(
       'https://api.openai.com/v1/engines/text-davinci-003/completions',
       {
